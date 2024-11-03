@@ -1,0 +1,37 @@
+gateways:
+  local:
+    connection:
+      type: duckdb
+      database: local.db
+      extensions:
+        - httpfs
+        - parquet
+      connector_config:
+        s3_endpoint: {{ env_var ('S3_ENDPOINT') }}
+        s3_access_key_id: {{ env_var ('S3_ACCESS_KEY_ID') }}
+        s3_secret_access_key: {{ env_var ('S3_SECRET_ACCESS_KEY') }}
+    variables:
+      s3_folder_location: {{ env_var ('S3_FOLDER_LOCATION_DEV') }}
+
+  prod:
+    connection:
+      type: duckdb
+      database: prod.db
+      extensions:
+        - httpfs
+        - parquet
+      connector_config:
+        s3_endpoint: {{ env_var ('S3_ENDPOINT') }}
+        s3_access_key_id: {{ env_var ('S3_ACCESS_KEY_ID') }}
+        s3_secret_access_key: {{ env_var ('S3_SECRET_ACCESS_KEY') }}
+    variables:
+      s3_folder_location: {{ env_var ('S3_FOLDER_LOCATION_PROD') }}
+
+default_gateway: local
+
+model_defaults:
+  dialect: duckdb
+  start: 2024-10-30
+
+
+
