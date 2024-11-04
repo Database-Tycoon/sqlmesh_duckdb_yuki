@@ -4,4 +4,4 @@ MODEL (
 );
 
 SELECT *
-FROM read_parquet('s3://sandbox-data-lake/direction.parquet')
+FROM read_parquet('s3://sqlmesh-duckdb-dev/direction.parquet')
